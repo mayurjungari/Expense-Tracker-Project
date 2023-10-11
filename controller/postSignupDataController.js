@@ -1,4 +1,5 @@
 const Credential=require('../models/LoginCredential')
+const bcrypt=require('bcrypt')
 
 module.exports.PostSignUpData=async (req,res)=>{
     const { uname,password,email}=req.body;
@@ -18,10 +19,13 @@ module.exports.PostSignUpData=async (req,res)=>{
     res.status(409).json({ message: 'Email already exists' });
     }
     else{
+        const saltRound=10;
+        const hashpassword=await bcrypt.hash(password,saltRound)
+        console.log(hashpassword)
         const newCredential= await Credential.create({
             Email:email,
             USERNAME:uname,
-            PASSWORD:password,
+            PASSWORD:hashpassword,
 
         })
         console.log(newCredential)

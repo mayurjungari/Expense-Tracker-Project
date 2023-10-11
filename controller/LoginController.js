@@ -1,4 +1,5 @@
 const Credential=require('../models/LoginCredential')
+const bcrypt=require('bcrypt')
 module.exports.LoginCheck= async (req, res) => {
     const { email, password } = req.body;
     
@@ -11,24 +12,25 @@ module.exports.LoginCheck= async (req, res) => {
       });
   
       if (existEmail) {
-        const matchPassword=await Credential.findOne({
-            where: {
-              PASSWORD: password,
-              
-            }
-          });
+        const storeHashPassword=existEmail.PASSWORD;
+        console.log(storeHashPassword)
+         const matchPassword=await bcrypt.compare(password,storeHashPassword)
           if(matchPassword){
             console.log("sucesfully Log in")
-            res.status(200).json({message:"succesfully Login"})
+            
+            res.status(200).write('<script>alert("succesfully Login");</script>');
           }
           else{
-            res.status(404).json({message:"Check Password"})
-
+            res.status(401).json({message:"Incorrect Password"})
+            
+               
+          
+ 
           }
        
       } else {
         console.log("User doesnot Exhist");
-        res.status(401).json({ message: "User Not Found" });
+        res.status(404).json({ message: "User Not Found" });
       }
     } catch (error) {
       console.error(error);
