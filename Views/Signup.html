@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+       
+        .container {
+            display: flex;
+            margin: 10% 20% 10% 20%;
+
+            background-attachment: fixed;
+            
+
+        }
+
+        .left-column {
+            width: 50%; 
+            background-color: grey;
+            
+            
+            padding: 20px;
+            
+        }
+
+        .right-column {
+            width: 50%; 
+            padding: 20px;
+            background-color: skyblue;
+        }
+        body {
+            overflow-y: hidden;
+        }
+    </style>
+    <title>SignUp</title>
+</head>
+<body>
+    
+    <div class="container">
+        
+        
+        
+        <div class="left-column">
+            <br><br><br><br><br>
+            <h4 style="text-align: center;"> Already Register User </h4> 
+            <p style="text-align: center ;font-size: small;">Log In Via Credential</p>
+            
+            <div style="text-align: center;">
+                <a href="Login.html"><button>Click here to Log in</button></a>
+            </div>
+           
+        </div>
+        <div class="right-column">
+            <br><br><br><br><br>
+            <h2 style="text-align: center;"> Expense Tracker !!</h2> <br>
+            <form action="/user/signup" method="post">
+                 <input type="text" class="form-control" name="uname" placeholder="Enter full name" required> <br>
+                <input type="email" class="form-control" name="email" placeholder="Enter Valid Email" required> <br>
+                
+                <input type="password" class="form-control" name="pasword" placeholder="Password" required> <br>
+               
+                <input style="display: block; margin: 0 auto; width: 3cm;" class="btn btn-primary" type="submit" value="SignUp"> <br><br><br>
+               
+
+            </form>
+            
+
+            
+        </div>
+    </div>
+</body>
+</html>
