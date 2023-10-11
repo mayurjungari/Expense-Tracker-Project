@@ -7,9 +7,10 @@
         .container {
             display: flex;
             
+            margin-top: 2cm;
+            margin-right: 4cm;
 
             background-attachment: fixed;
-            margin-top: 2cm;
             
 
         }
@@ -32,43 +33,44 @@
             overflow-y: hidden;
         }
     </style>
-    <title>SignUp</title>
+    <title>LogIN</title>
 </head>
 <body>
-  
     
     <div class="container">
-        
-        
+       
         
         <div class="left-column">
             <br><br><br><br><br>
-            <h4 style="text-align: center;"> Already Register User </h4> 
+            <h2 style="text-align: center;">LOG IN</h2> 
             <p style="text-align: center ;font-size: small;">Log In Via Credential</p>
-            
-            <div style="text-align: center;">
-                <a href="/"><button>Click here to Log in</button></a>
-            </div>
+            <form action="/login" method="post" >
+                <input type="email" class="form-control" name="email" placeholder="Enter Email" required> <br>
+                <input type="password" class="form-control" name="password" placeholder="password" required><br>
+                <a href="" style="color: black; text-align: center;">Forgot Your password ?</a> <br>
+                <div style="justify-content: center;">
+                    <input style="display: block; margin: 0 auto; width: 3cm;" class="btn btn-primary" type="submit" value="Log In"> <br><br><br>
+                </div>
+               
+
+
+
+            </form>
+
            
         </div>
         <div class="right-column">
             <br><br><br><br><br>
             <h2 style="text-align: center;"> Expense Tracker !!</h2> <br>
-            <form action="/user/signup" method="post">
-                 <input type="text" class="form-control" name="uname" placeholder="Enter full name" required> <br>
-                <input type="email" class="form-control" name="email" placeholder="Enter Valid Email" required> <br>
-                
-                <input type="password" class="form-control" name="password" placeholder="Password" required> <br>
-               
-                <input style="display: block; margin: 0 auto; width: 3cm;" class="btn btn-primary" type="submit" value="SignUp"> <br><br><br>
-               
-
-            </form>
-            
+            <p style="text-align: center ;font-size: small; color: brown;">Enter Your Persnal Detail and Sign Up</p>
+           
+            <div style="text-align: center;">
+                <a href="/user"><button>Click here to Sign Up</button></a>
+            </div>
+           
 
             
         </div>
     </div>
-    
 </body>
 </html>
