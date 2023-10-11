@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/style.css">
+   
+   
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li style="font-size: x-large; margin-left: 2cm;"><b>Expense Tracker</b></li>
+                <li><a href="/homepage">Home</a></li>
+                <li><a href="/Reports">Reports</a></li>
+                <li id="logout"><a href="///"><button style="width: 3cm;">LogOut</button></a></li>
+                
+            </ul>
+        </nav>
+    </header>
+    <div id="expensediv">
+        <form action="/expense/addData" method="post" id="expenseform">
+            <select style="width: 3cm;height: 0.7cm;" name="catagory" id="catagory" class="eform">
+                <option selected value=""> Select Category</option>
+                <option value="Electricity Bill">Electricity Bill</option>
+                <option value="Mobile Recharge">Mobile Recharge</option>
+                <option value="Food">Food</option>
+                <option value="Grocery">Grocery</option>
+            </select>
+            <input type="hidden" name="mail" id="mail">
+            <label for="desc"> Description</label>
+            <input type="text" name="desc" id="desc" class="eform">
+        
+            <label for="ammount">Amount</label>
+            <input type="number" name="ammount" id="ammount" class="eform">
+        
+            <input type="submit" value="Update" id="updatebutton">
+        </form>
+        
+    </div>
+    <div id="etable" >
+        <table >
+           <thead>
+              <tr id="tableheading">
+                 <th>Category</th>
+                 <th>Description</th>
+                 <th>Amount</th>
+                 <th>Status</th>
+              
+           </thead>
+           <br>
+           
+           <tbody id="expenseTableBody" style="background-color: steelblue; ">
+           
+              
+           </tbody>
+        </table>
+     </div>
+   
+    
+ <script src="/Index.js"></script>   
+</body>
+</html>

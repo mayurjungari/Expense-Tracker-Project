@@ -18,7 +18,7 @@ module.exports.LoginCheck= async (req, res) => {
           if(matchPassword){
             console.log("sucesfully Log in")
             
-            res.status(200).write('<script>alert("succesfully Login");</script>');
+            res.redirect('/expense');
           }
           else{
             res.status(401).json({message:"Incorrect Password"})
