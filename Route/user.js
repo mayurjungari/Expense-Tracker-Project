@@ -7,11 +7,14 @@ const getsigninPagecontroller=require('../controller/GetSignInPageController')
 
 const postSignUpcontroller=require('../controller/postSignupDataController');
 const logincontroller=require('../controller/LoginController')
+router.get('/',getsigninPagecontroller.GetSignInPage)
+router.post('/login',logincontroller.LoginCheck)
+
 
 router.get('/user', signupcontroller.getSignUpPage );
 router.post('/user/signup',postSignUpcontroller.PostSignUpData)
-router.get('/',getsigninPagecontroller.GetSignInPage)
-router.post('/login',logincontroller.LoginCheck)
+
+
 
 
 

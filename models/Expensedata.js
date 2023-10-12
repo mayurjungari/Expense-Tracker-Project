@@ -35,11 +35,11 @@ const sequelize = new Sequelize('Node_complete', 'root', 'Mayur@123', {
 
   })
   sequelize.sync()
-  .then((result) => {
-    console.log('sync edata succesfully');
-    
-  }).catch((err) => {
-    console.log(err);
+  .then(() => {
+    console.log('Database synchronized.');
+  })
+  .catch((error) => {
+    console.error('Error synchronizing the database:', error);
   });
   
   module.exports=Expensedata

@@ -1,4 +1,5 @@
 const Credential=require('../models/LoginCredential')
+const jwt=require('jsonwebtoken')
 const bcrypt=require('bcrypt')
 module.exports.LoginCheck= async (req, res) => {
     const { email, password } = req.body;
@@ -10,13 +11,24 @@ module.exports.LoginCheck= async (req, res) => {
           
         }
       });
+
   
       if (existEmail) {
         const storeHashPassword=existEmail.PASSWORD;
         console.log(storeHashPassword)
          const matchPassword=await bcrypt.compare(password,storeHashPassword)
           if(matchPassword){
-            console.log("sucesfully Log in")
+           
+            console.log("sucesfully Log in") 
+            const token = jwt.sign({ userId: existEmail.ID }, 'Mayur@123');
+            console.log(token)
+
+            req.session.user = {
+              token
+          };
+            
+           
+
             
             res.redirect('/expense');
           }
