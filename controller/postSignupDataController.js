@@ -26,6 +26,7 @@ module.exports.PostSignUpData=async (req,res)=>{
             Email:email,
             USERNAME:uname,
             PASSWORD:hashpassword,
+            ispremium:false,
 
         })
         console.log(newCredential)

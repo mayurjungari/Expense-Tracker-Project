@@ -28,8 +28,11 @@ const sequelize = new Sequelize('Node_complete', 'root', 'Mayur@123', {
         type: Sequelize.STRING,
         allowNull: false,
         
+    },
+    ispremium: {
+      type: Sequelize.BOOLEAN,
+      defaultValue: false
     }
-
   },
   {
     tablename:'credential' ,

@@ -1,10 +1,28 @@
 const express=require('express')
 const Sequelize=require('sequelize')
+const jwt=require('jsonwebtoken')
+
+
+
+const Razorpay = require('razorpay');
+
+
+
+const razorpay = new Razorpay({
+  key_id: 'rzp_test_l8Qgv3sCDGg8Cr',
+  key_secret: '597pfku3duKmtEiCSqqoo9JO'
+});
+
+
+
+const Order=require('./models/Order')
 const sequelize = new Sequelize('Node_complete', 'root', 'Mayur@123', {
     host: 'localhost',
     dialect: 'mysql', 
   });
+ 
 const app=express();
+
 
 
 const session = require('express-session');
@@ -18,12 +36,16 @@ app.use(session({
 
 
 
+
 const userroute=require('./Route/user')
 const expenseroute=require('./Route/Expense')
+const deleteroute=require('./Route/Expense')
 const bodyparser=require('body-parser')
 const Credential=require('./models/LoginCredential');
 const Expensedata=require('./models/Expensedata')
-const path=require('path')
+const paymentRoute=require('./Route/payement')
+const path=require('path');
+
 
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname,'Public')))
@@ -32,6 +54,9 @@ app.use(express.static(path.join(__dirname,'Public')))
 
 Credential.hasMany(Expensedata)
 Expensedata.belongsTo(Credential)
+
+Credential.hasMany(Order)
+Order.belongsTo(Credential)
     
 
 
@@ -43,42 +68,23 @@ app.post('/login',userroute)
 app.get('/expense',expenseroute)
 app.post('/expense/addData',expenseroute)
 app.get('/expense/getdata',expenseroute)
+//---------------------------------------------------------------------------------------------------------
+app.post('/createOrder',paymentRoute)
 
-app.delete('/expense/deletedata/:id',async (req,res)=>{
-    try {
-        const id=req.params.id;
-    const deletedRows = await Expensedata.destroy({
-        where: {
-            ID: id,
-        },
-    });
-    if(deletedRows)
-    {
-        console.log('data Deleted Succesfully')
-       
-        res.redirect('/expense')
-    }
-    else{
-        console.log('something went wrong')
-    }
-        
-    } catch (error) {
-        console.log(error)
-    }
-    
-})
-
-sequelize.sync()
-.then(() => {
-  console.log('Database synchronized.');
-})
-.catch((error) => {
-  console.error('Error synchronizing the database:', error);
-});
+app.use(express.json());
+//------------------------------------------------------------------------------o
+app.post('/membershipupdate',paymentRoute)
+app.delete('/expense/deletedata/:id',deleteroute)
 
 
 
-    
+ 
+  sequelize.sync( ).then(() => {
+    console.log('All models were synchronized successfully.');
+  }).catch((error) => {
+    console.error('An error occurred during synchronization:', error);
+  });
+  
 
 app.use((req,res)=>{
     res.send('Not Found')
